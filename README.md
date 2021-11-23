@@ -6,9 +6,9 @@ Componentes do grupo:
 * Pedro Silva de Sá Monnerat
 * Renata Fuschini Alaggio
 
-Página inicial do portal:
+Seguindo os exemplos feitos em aula:
 
-![portal0](https://user-images.githubusercontent.com/93871860/141697593-cf3b5c3a-c103-42fb-bfb9-1c24366515ed.jpg)
+![portal4](https://user-images.githubusercontent.com/93871860/142988273-247ae58d-d9d5-44ba-86c6-0d878237d765.jpg)
 
 Exemplo 1: Texto reverso
 
@@ -21,3 +21,8 @@ Exemplo 2: Soma de dois números
 Exemplo 3: Contador de cliques
 
 ![portal3](https://user-images.githubusercontent.com/93871860/141697599-8eedb795-1f73-493d-a90c-225e6af47b57.jpg)
+
+Exemplo 4: Inserção ao banco de dados
+
+![portal5](https://user-images.githubusercontent.com/93871860/142988345-db55f467-e68a-4442-8365-4c3b52eeb615.jpg)
+
