@@ -1,6 +1,7 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE ScopedTypeVariables #-}
 
 module Frontend where
 
@@ -25,6 +26,25 @@ import Common.Route
 -- This runs in a monad that can be run on the client or the server.
 -- To run code in a pure client or pure server context, use one of the
 -- `prerender` functions.
+
+getPath :: T.Text
+getPath = renderBackendRoute checFullREnc $ BackendRoute_Cliente :/ ()
+
+nomeRequest :: T.Text -> XhrRequest T.Text
+nomeRequest s = postJson getPath (Cliente s)
+
+req :: ( DomBuilder t m
+       , Prerender js t m
+       ) => m ()
+req = do
+   inputEl <- inputElement def
+   (submitBtn,_) <- el' "button" (text "Inserir")
+   let click = domEvent Click submitBtn
+   let nm = tag (current $ _inputElement_value inputEl) click
+   _ :: Dynamic t (Event t (Maybe T.Text)) <- prerender
+      (pure never)
+      (fmap decodeXhrResponse <$> performRequestAsync (nomeRequest <$> nm))
+   return ()
 
 buttonClick :: (DomBuilder t m, PostBuild t m, MonadHold t m)
             => m (Event t T.Text)
@@ -106,7 +126,7 @@ pagClick = do
    st <- accumDyn (+) 0 evt
    el "div" (dynText (fmap (T.pack . show) st))
       
-data Pagina = Pagina0 | Pagina1 | Pagina2 | Pagina3
+data Pagina = Pagina0 | Pagina1 | Pagina2 | Pagina3 | Pagina4
 clickLi :: (DomBuilder t m, PostBuild t m, MonadHold t m) => Pagina -> T.Text -> m (Event t Pagina)
 clickLi p t = do
    (ev, _) <- el' "li" (elAttr "a" ("href" =: "#") (text t))
@@ -118,10 +138,11 @@ menuLi = do
       p1 <- clickLi Pagina1 "Exemplo 1: Texto reverso"
       p2 <- clickLi Pagina2 "Exemplo 2: Soma"
       p3 <- clickLi Pagina3 "Exemplo 3: Contador de cliques"
-      return (leftmost [p1,p2,p3])
+      p4 <- clickLi Pagina4 "Exemplo 4: Inserção ao banco de dados"
+      return (leftmost [p1,p2,p3,p4])
    holdDyn Pagina0 evs
 
-currPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m)
+currPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m, Prerender js t m)
         => Pagina -> m ()
 currPag p =
    case p of
@@ -129,8 +150,9 @@ currPag p =
       Pagina1 -> bttnEvt
       Pagina2 -> sumEvt
       Pagina3 -> pagClick
+      Pagina4 -> req
 
-mainPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m) => m ()
+mainPag :: (DomBuilder t m, MonadHold t m, PostBuild t m, MonadFix m, Prerender js t m) => m ()
 mainPag = do
    pag <- el "div" menuLi
    dyn_ $ currPag <$> pag
