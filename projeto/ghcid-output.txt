@@ -1,65 +1,120 @@
-frontend/src/Frontend.hs:17:1-21: warning: [-Wunused-imports]
-    The import of ‘Data.Map’ is redundant
+backend/src/Backend.hs:37:19-44: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateProd’
    |
-17 | import Data.Map (Map)
-   | ^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:(49,1)-(50,33): warning: [-Wredundant-constraints]
-    • Redundant constraints: (PostBuild t m, MonadHold t m)
-    • In the type signature for:
-           buttonClick :: forall t (m :: * -> *).
-                          (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                          m (Event t T.Text)
+37 |                   execute_ dbcon migrateProd
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:43:19-44: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateProd’
    |
-49 | buttonClick :: (DomBuilder t m, PostBuild t m, MonadHold t m)
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-frontend/src/Frontend.hs:(73,1)-(74,31): warning: [-Wredundant-constraints]
-    • Redundant constraints: (PostBuild t m, MonadHold t m)
-    • In the type signature for:
-           sumButton :: forall t (m :: * -> *).
-                        (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                        m (Event t Double)
+43 |                   execute_ dbcon migrateProd
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:(54,22)-(57,95): warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying
+      ‘_ <- liftIO
+              $ do execute_ dbcon migrateProd
+                   execute
+                     dbcon
+                     "INSERT INTO produtoo (nome,valor,qt) VALUES (?,?,?)"
+                     (produtoNome produto, produtoValor produto, produtoQt produto)’
    |
-73 | sumButton :: (DomBuilder t m, PostBuild t m, MonadHold t m)
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-frontend/src/Frontend.hs:95:1-64: warning: [-Wredundant-constraints]
-    • Redundant constraint: MonadHold t m
-    • In the type signature for:
-           caixas :: forall t (m :: * -> *).
-                     (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                     m ()
+54 |                      liftIO $ do
+   |                      ^^^^^^^^^^^...
+backend/src/Backend.hs:55:25-50: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateProd’
    |
-95 | caixas :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m ()
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:102:1-67: warning: [-Wredundant-constraints]
-    • Redundant constraint: MonadHold t m
-    • In the type signature for:
-           caixaSoma :: forall t (m :: * -> *).
-                        (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                        m ()
-    |
-102 | caixaSoma :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m ()
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:130:1-99: warning: [-Wredundant-constraints]
-    • Redundant constraints: (PostBuild t m, MonadHold t m)
-    • In the type signature for:
-           clickLi :: forall t (m :: * -> *).
-                      (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                      Pagina -> T.Text -> m (Event t Pagina)
-    |
-130 | clickLi :: (DomBuilder t m, PostBuild t m, MonadHold t m) => Pagina -> T.Text -> m (Event t Pagina)
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-backend/src/Backend.hs:(32,16)-(34,86): warning: [-Wunused-do-bind]
+55 |                         execute_ dbcon migrateProd
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:(62,16)-(64,86): warning: [-Wunused-do-bind]
     A do-notation statement discarded a result of type ‘GHC.Int.Int64’
     Suppress this warning by saying
       ‘_ <- liftIO
               $ do execute_ dbcon migration
                    execute dbcon "INSERT INTO cliente (nome) VALUES (?)" [...]’
    |
-32 |                liftIO $ do
+62 |                liftIO $ do
    |                ^^^^^^^^^^^...
-backend/src/Backend.hs:33:19-42: warning: [-Wunused-do-bind]
+backend/src/Backend.hs:63:19-42: warning: [-Wunused-do-bind]
     A do-notation statement discarded a result of type ‘GHC.Int.Int64’
     Suppress this warning by saying ‘_ <- execute_ dbcon migration’
    |
-33 |                   execute_ dbcon migration
+63 |                   execute_ dbcon migration
    |                   ^^^^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:17:1-21: warning: [-Wunused-imports]
+    The import of ‘Data.Map’ is redundant
+   |
+17 | import Data.Map (Map)
+   | ^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:110:1-99: warning: [-Wredundant-constraints]
+    • Redundant constraints: (PostBuild t m, MonadHold t m)
+    • In the type signature for:
+           clickLi :: forall t (m :: * -> *).
+                      (DomBuilder t m, PostBuild t m, MonadHold t m) =>
+                      Pagina -> T.Text -> m (Event t Pagina)
+    |
+110 | clickLi :: (DomBuilder t m, PostBuild t m, MonadHold t m) => Pagina -> T.Text -> m (Event t Pagina)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:(147,1)-(148,33): warning: [-Wredundant-constraints]
+    • Redundant constraints: (PostBuild t m, MonadHold t m)
+    • In the type signature for:
+           buttonClick :: forall t (m :: * -> *).
+                          (DomBuilder t m, PostBuild t m, MonadHold t m) =>
+                          m (Event t T.Text)
+    |
+147 | buttonClick :: (DomBuilder t m, PostBuild t m, MonadHold t m)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+frontend/src/Frontend.hs:(171,1)-(172,31): warning: [-Wredundant-constraints]
+    • Redundant constraints: (PostBuild t m, MonadHold t m)
+    • In the type signature for:
+           sumButton :: forall t (m :: * -> *).
+                        (DomBuilder t m, PostBuild t m, MonadHold t m) =>
+                        m (Event t Double)
+    |
+171 | sumButton :: (DomBuilder t m, PostBuild t m, MonadHold t m)
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
+frontend/src/Frontend.hs:190:1-64: warning: [-Wredundant-constraints]
+    • Redundant constraint: MonadHold t m
+    • In the type signature for:
+           caixas :: forall t (m :: * -> *).
+                     (DomBuilder t m, PostBuild t m, MonadHold t m) =>
+                     m ()
+    |
+190 | caixas :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m ()
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:197:1-67: warning: [-Wredundant-constraints]
+    • Redundant constraint: MonadHold t m
+    • In the type signature for:
+           caixaSoma :: forall t (m :: * -> *).
+                        (DomBuilder t m, PostBuild t m, MonadHold t m) =>
+                        m ()
+    |
+197 | caixaSoma :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m ()
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:199:10-20: warning: [-Wtype-defaults]
+    • Defaulting the following constraints to type ‘Integer’
+        (Read a0)
+          arising from a use of ‘numberInput’
+          at frontend/src/Frontend.hs:199:10-20
+        (Num a0)
+          arising from a use of ‘numberInput’
+          at frontend/src/Frontend.hs:199:10-20
+        (Show a0)
+          arising from a use of ‘show’ at frontend/src/Frontend.hs:202:28-31
+    • In a stmt of a 'do' block: n1 <- numberInput
+      In the expression:
+        do n1 <- numberInput
+           text " "
+           n2 <- numberInput
+           dynText (fmap (T.pack . show) (zipDynWith (+) n1 n2))
+      In an equation for ‘caixaSoma’:
+          caixaSoma
+            = do n1 <- numberInput
+                 text " "
+                 n2 <- numberInput
+                 ....
+    |
+199 |    n1 <- numberInput -- m (Dynamic t Double)
+    |          ^^^^^^^^^^^
