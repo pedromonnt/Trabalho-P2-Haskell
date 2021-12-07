@@ -1,120 +1,256 @@
-backend/src/Backend.hs:37:19-44: warning: [-Wunused-do-bind]
-    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
-    Suppress this warning by saying ‘_ <- execute_ dbcon migrateProd’
+backend/src/Backend.hs:8:1: warning: [-Wunused-imports]
+    The import of ‘Data.Text’ is redundant
+  |
+8 | import Data.Text
+  | ^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:37:10: warning: [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In a case alternative:
+        Patterns not matched: (BackendRoute_Missing :/ _)
    |
-37 |                   execute_ dbcon migrateProd
-   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
-backend/src/Backend.hs:43:19-44: warning: [-Wunused-do-bind]
+37 |          \case
+   |          ^^^^^...
+backend/src/Backend.hs:40:19: warning: [-Wunused-do-bind]
     A do-notation statement discarded a result of type ‘GHC.Int.Int64’
-    Suppress this warning by saying ‘_ <- execute_ dbcon migrateProd’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateLivr’
    |
-43 |                   execute_ dbcon migrateProd
+40 |                   execute_ dbcon migrateLivr
    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
-backend/src/Backend.hs:(54,22)-(57,95): warning: [-Wunused-do-bind]
+backend/src/Backend.hs:47:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateFunc’
+   |
+47 |                   execute_ dbcon migrateFunc
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:54:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateComp’
+   |
+54 |                   execute_ dbcon migrateComp
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:61:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateLivr’
+   |
+61 |                   execute_ dbcon migrateLivr
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:71:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateFunc’
+   |
+71 |                   execute_ dbcon migrateFunc
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:81:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateComp’
+   |
+81 |                   execute_ dbcon migrateComp
+   |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:93:22: warning: [-Wunused-do-bind]
     A do-notation statement discarded a result of type ‘GHC.Int.Int64’
     Suppress this warning by saying
       ‘_ <- liftIO
-              $ do execute_ dbcon migrateProd
+              $ do execute_ dbcon migrateLivr
                    execute
                      dbcon
-                     "INSERT INTO produtoo (nome,valor,qt) VALUES (?,?,?)"
-                     (produtoNome produto, produtoValor produto, produtoQt produto)’
+                     "UPDATE livroo SET titulo = ?, autor = ?, editora = ?, categoria = ?, valor = ?, qt = ? WHERE id = ?"
+                     (livroTitulo livro, livroAutor livro, livroEditora livro, 
+                      livroCategoria livro, livroValor livro, livroQt livro, pid)’
    |
-54 |                      liftIO $ do
+93 |                      liftIO $ do
    |                      ^^^^^^^^^^^...
-backend/src/Backend.hs:55:25-50: warning: [-Wunused-do-bind]
+backend/src/Backend.hs:94:25: warning: [-Wunused-do-bind]
     A do-notation statement discarded a result of type ‘GHC.Int.Int64’
-    Suppress this warning by saying ‘_ <- execute_ dbcon migrateProd’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateLivr’
    |
-55 |                         execute_ dbcon migrateProd
+94 |                         execute_ dbcon migrateLivr
    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
-backend/src/Backend.hs:(62,16)-(64,86): warning: [-Wunused-do-bind]
+backend/src/Backend.hs:104:22: warning: [-Wunused-do-bind]
     A do-notation statement discarded a result of type ‘GHC.Int.Int64’
     Suppress this warning by saying
       ‘_ <- liftIO
-              $ do execute_ dbcon migration
-                   execute dbcon "INSERT INTO cliente (nome) VALUES (?)" [...]’
-   |
-62 |                liftIO $ do
-   |                ^^^^^^^^^^^...
-backend/src/Backend.hs:63:19-42: warning: [-Wunused-do-bind]
+              $ do execute_ dbcon migrateFunc
+                   execute
+                     dbcon
+                     "UPDATE funcionarioo SET nome = ?, cargo = ?, email = ?, telefone = ?, salario = ? WHERE id = ?"
+                     (funcionarioNome funcionario, funcionarioCargo funcionario, 
+                      funcionarioEmail funcionario, funcionarioTelefone funcionario, 
+                      funcionarioSalario funcionario, pid)’
+    |
+104 |                      liftIO $ do
+    |                      ^^^^^^^^^^^...
+backend/src/Backend.hs:105:25: warning: [-Wunused-do-bind]
     A do-notation statement discarded a result of type ‘GHC.Int.Int64’
-    Suppress this warning by saying ‘_ <- execute_ dbcon migration’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateFunc’
+    |
+105 |                         execute_ dbcon migrateFunc
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:115:22: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying
+      ‘_ <- liftIO
+              $ do execute_ dbcon migrateComp
+                   execute
+                     dbcon
+                     "UPDATE compradorr SET nome = ?, endereco = ?, cidade = ?, estado = ?, email = ? WHERE id = ?"
+                     (compradorNome comprador, compradorEndereco comprador, 
+                      compradorCidade comprador, compradorEstado comprador, 
+                      compradorEmail comprador, pid)’
+    |
+115 |                      liftIO $ do
+    |                      ^^^^^^^^^^^...
+backend/src/Backend.hs:116:25: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateComp’
+    |
+116 |                         execute_ dbcon migrateComp
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:124:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateLivr’
+    |
+124 |                   execute_ dbcon migrateLivr
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:134:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateFunc’
+    |
+134 |                   execute_ dbcon migrateFunc
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:144:19: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateComp’
+    |
+144 |                   execute_ dbcon migrateComp
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:156:22: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying
+      ‘_ <- liftIO
+              $ do execute_ dbcon migrateLivr
+                   execute
+                     dbcon
+                     "INSERT INTO livroo (titulo,autor,editora,categoria,valor,qt) VALUES (?,?,?,?,?,?)"
+                     (livroTitulo livro, livroAutor livro, livroEditora livro, 
+                      livroCategoria livro, livroValor livro, livroQt livro)’
+    |
+156 |                      liftIO $ do
+    |                      ^^^^^^^^^^^...
+backend/src/Backend.hs:157:25: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateLivr’
+    |
+157 |                         execute_ dbcon migrateLivr
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:167:22: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying
+      ‘_ <- liftIO
+              $ do execute_ dbcon migrateFunc
+                   execute
+                     dbcon
+                     "INSERT INTO funcionarioo (nome,cargo,email,telefone,salario) VALUES (?,?,?,?,?)"
+                     (funcionarioNome funcionario, funcionarioCargo funcionario, 
+                      funcionarioEmail funcionario, funcionarioTelefone funcionario, 
+                      funcionarioSalario funcionario)’
+    |
+167 |                      liftIO $ do
+    |                      ^^^^^^^^^^^...
+backend/src/Backend.hs:168:25: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateFunc’
+    |
+168 |                         execute_ dbcon migrateFunc
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+backend/src/Backend.hs:178:22: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying
+      ‘_ <- liftIO
+              $ do execute_ dbcon migrateComp
+                   execute
+                     dbcon
+                     "INSERT INTO compradorr (nome,endereco,cidade,estado,email) VALUES (?,?,?,?,?)"
+                     (compradorNome comprador, compradorEndereco comprador, 
+                      compradorCidade comprador, compradorEstado comprador, 
+                      compradorEmail comprador)’
+    |
+178 |                      liftIO $ do
+    |                      ^^^^^^^^^^^...
+backend/src/Backend.hs:179:25: warning: [-Wunused-do-bind]
+    A do-notation statement discarded a result of type ‘GHC.Int.Int64’
+    Suppress this warning by saying ‘_ <- execute_ dbcon migrateComp’
+    |
+179 |                         execute_ dbcon migrateComp
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:10:1: warning: [-Wunused-imports]
+    The qualified import of ‘Data.Text.Encoding’ is redundant
    |
-63 |                   execute_ dbcon migration
-   |                   ^^^^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:17:1-21: warning: [-Wunused-imports]
+10 | import qualified Data.Text.Encoding as T
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:14:1: warning: [-Wunused-imports]
+    The import of ‘Obelisk.Configs’ is redundant
+   |
+14 | import Obelisk.Configs
+   | ^^^^^^^^^^^^^^^^^^^^^^
+frontend/src/Frontend.hs:17:1: warning: [-Wunused-imports]
     The import of ‘Data.Map’ is redundant
    |
 17 | import Data.Map (Map)
    | ^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:110:1-99: warning: [-Wredundant-constraints]
+frontend/src/Frontend.hs:208:8: warning: [-Wname-shadowing]
+    This binding for ‘livr’ shadows the existing binding
+      bound at frontend/src/Frontend.hs:190:4
+    |
+208 |    let livr = fmap (\(((((t,a),e),c),v),q) -> Livro 0 t a e c v q) (zipDyn (zipDyn (zipDyn (zipDyn (zipDyn (_inputElement_value titulo) (_inputElement_value autor)) (_inputElement_value editora)) (_inputElement_value categoria)) valor) qt)
+    |        ^^^^
+frontend/src/Frontend.hs:216:7: warning: [-Wunused-local-binds]
+    Defined but not used: ‘novoInput’
+    |
+216 |       novoInput x = inputElement $ def
+    |       ^^^^^^^^^
+frontend/src/Frontend.hs:243:8: warning: [-Wname-shadowing]
+    This binding for ‘func’ shadows the existing binding
+      bound at frontend/src/Frontend.hs:227:4
+    |
+243 |    let func = fmap (\((((n,c),e),t),s) -> Funcionario 0 n c e t s) (zipDyn (zipDyn (zipDyn (zipDyn (_inputElement_value nome) (_inputElement_value cargo)) (_inputElement_value email)) (_inputElement_value telefone)) salario)
+    |        ^^^^
+frontend/src/Frontend.hs:251:7: warning: [-Wunused-local-binds]
+    Defined but not used: ‘novoInput’
+    |
+251 |       novoInput x = inputElement $ def
+    |       ^^^^^^^^^
+frontend/src/Frontend.hs:278:8: warning: [-Wname-shadowing]
+    This binding for ‘comp’ shadows the existing binding
+      bound at frontend/src/Frontend.hs:262:4
+    |
+278 |    let comp = fmap (\((((a,b),c),d),e) -> Comprador 0 a b c d e) (zipDyn (zipDyn (zipDyn (zipDyn (_inputElement_value nome) (_inputElement_value endereco)) (_inputElement_value cidade)) (_inputElement_value estado)) (_inputElement_value email))
+    |        ^^^^
+frontend/src/Frontend.hs:286:7: warning: [-Wunused-local-binds]
+    Defined but not used: ‘novoInput’
+    |
+286 |       novoInput x = inputElement $ def
+    |       ^^^^^^^^^
+frontend/src/Frontend.hs:301:4: warning: [-Wunused-matches]
+    Defined but not used: ‘dynP’
+    |
+301 |    dynP <- return ((fromMaybe (Livro 0 "" "" "" "" 0 0)) <$> mdyn)
+    |    ^^^^
+frontend/src/Frontend.hs:312:4: warning: [-Wunused-matches]
+    Defined but not used: ‘func’
+    |
+312 |    func :: Dynamic t (Event t (Maybe Funcionario)) <- prerender
+    |    ^^^^
+frontend/src/Frontend.hs:325:4: warning: [-Wunused-matches]
+    Defined but not used: ‘comp’
+    |
+325 |    comp :: Dynamic t (Event t (Maybe Comprador)) <- prerender
+    |    ^^^^
+frontend/src/Frontend.hs:538:1: warning: [-Wredundant-constraints]
     • Redundant constraints: (PostBuild t m, MonadHold t m)
     • In the type signature for:
            clickLi :: forall t (m :: * -> *).
                       (DomBuilder t m, PostBuild t m, MonadHold t m) =>
                       Pagina -> T.Text -> m (Event t Pagina)
     |
-110 | clickLi :: (DomBuilder t m, PostBuild t m, MonadHold t m) => Pagina -> T.Text -> m (Event t Pagina)
+538 | clickLi :: (DomBuilder t m, PostBuild t m, MonadHold t m) => Pagina -> T.Text -> m (Event t Pagina)
     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:(147,1)-(148,33): warning: [-Wredundant-constraints]
-    • Redundant constraints: (PostBuild t m, MonadHold t m)
-    • In the type signature for:
-           buttonClick :: forall t (m :: * -> *).
-                          (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                          m (Event t T.Text)
-    |
-147 | buttonClick :: (DomBuilder t m, PostBuild t m, MonadHold t m)
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-frontend/src/Frontend.hs:(171,1)-(172,31): warning: [-Wredundant-constraints]
-    • Redundant constraints: (PostBuild t m, MonadHold t m)
-    • In the type signature for:
-           sumButton :: forall t (m :: * -> *).
-                        (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                        m (Event t Double)
-    |
-171 | sumButton :: (DomBuilder t m, PostBuild t m, MonadHold t m)
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^...
-frontend/src/Frontend.hs:190:1-64: warning: [-Wredundant-constraints]
-    • Redundant constraint: MonadHold t m
-    • In the type signature for:
-           caixas :: forall t (m :: * -> *).
-                     (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                     m ()
-    |
-190 | caixas :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m ()
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:197:1-67: warning: [-Wredundant-constraints]
-    • Redundant constraint: MonadHold t m
-    • In the type signature for:
-           caixaSoma :: forall t (m :: * -> *).
-                        (DomBuilder t m, PostBuild t m, MonadHold t m) =>
-                        m ()
-    |
-197 | caixaSoma :: (DomBuilder t m, PostBuild t m, MonadHold t m) => m ()
-    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-frontend/src/Frontend.hs:199:10-20: warning: [-Wtype-defaults]
-    • Defaulting the following constraints to type ‘Integer’
-        (Read a0)
-          arising from a use of ‘numberInput’
-          at frontend/src/Frontend.hs:199:10-20
-        (Num a0)
-          arising from a use of ‘numberInput’
-          at frontend/src/Frontend.hs:199:10-20
-        (Show a0)
-          arising from a use of ‘show’ at frontend/src/Frontend.hs:202:28-31
-    • In a stmt of a 'do' block: n1 <- numberInput
-      In the expression:
-        do n1 <- numberInput
-           text " "
-           n2 <- numberInput
-           dynText (fmap (T.pack . show) (zipDynWith (+) n1 n2))
-      In an equation for ‘caixaSoma’:
-          caixaSoma
-            = do n1 <- numberInput
-                 text " "
-                 n2 <- numberInput
-                 ....
-    |
-199 |    n1 <- numberInput -- m (Dynamic t Double)
-    |          ^^^^^^^^^^^

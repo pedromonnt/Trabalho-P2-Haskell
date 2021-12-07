@@ -15,11 +15,30 @@ import Database.PostgreSQL.Simple
 commonStuff :: String
 commonStuff = "Segue um string definido em Common.Api"
 
-data Cliente = Cliente Text deriving (Generic, ToJSON, FromJSON)
+data Livro = Livro {
+   livroId :: Int,
+   livroTitulo :: Text,
+   livroAutor :: Text,
+   livroEditora :: Text,
+   livroCategoria :: Text,
+   livroValor :: Double,
+   livroQt :: Int
+} deriving (Generic, ToJSON, FromJSON, ToRow, FromRow, Eq, Show)
 
-data Produto = Produto {
-   produtoId :: Int,
-   produtoNome :: Text,
-   produtoValor :: Double,
-   produtoQt :: Int
+data Funcionario = Funcionario {
+   funcionarioId :: Int,
+   funcionarioNome :: Text,
+   funcionarioCargo :: Text,
+   funcionarioEmail :: Text,
+   funcionarioTelefone :: Text,
+   funcionarioSalario :: Double
+} deriving (Generic, ToJSON, FromJSON, ToRow, FromRow, Eq, Show)
+
+data Comprador = Comprador {
+   compradorId :: Int,
+   compradorNome :: Text,
+   compradorEndereco :: Text,
+   compradorCidade :: Text,
+   compradorEstado :: Text,
+   compradorEmail :: Text
 } deriving (Generic, ToJSON, FromJSON, ToRow, FromRow, Eq, Show)

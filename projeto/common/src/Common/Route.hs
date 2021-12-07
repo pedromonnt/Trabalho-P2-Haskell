@@ -30,11 +30,22 @@ checFullREnc = checkEncoder fullRouteEncoder &
 
 data BackendRoute :: * -> * where
   -- | Used to handle unparseable routes.
-  BackendRoute_Missing :: BackendRoute ()
-  BackendRoute_Cliente :: BackendRoute ()
-  BackendRoute_Produto :: BackendRoute ()
-  BackendRoute_Listar  :: BackendRoute ()
-  BackendRoute_Buscar  :: BackendRoute Int
+  BackendRoute_Missing     :: BackendRoute ()
+  BackendRoute_Livro       :: BackendRoute ()
+  BackendRoute_Funcionario :: BackendRoute ()
+  BackendRoute_Comprador   :: BackendRoute ()
+  BackendRoute_ListarLivr  :: BackendRoute ()
+  BackendRoute_ListarFunc  :: BackendRoute ()
+  BackendRoute_ListarComp  :: BackendRoute ()
+  BackendRoute_BuscarLivr  :: BackendRoute Int
+  BackendRoute_BuscarFunc  :: BackendRoute Int
+  BackendRoute_BuscarComp  :: BackendRoute Int
+  BackendRoute_EditarLivr  :: BackendRoute Int
+  BackendRoute_EditarFunc  :: BackendRoute Int
+  BackendRoute_EditarComp  :: BackendRoute Int
+  BackendRoute_DeletarLivr :: BackendRoute Int
+  BackendRoute_DeletarFunc :: BackendRoute Int
+  BackendRoute_DeletarComp :: BackendRoute Int
   -- You can define any routes that will be handled specially by the backend here.
   -- i.e. These do not serve the frontend, but do something different, such as serving static files.
 
@@ -47,11 +58,22 @@ fullRouteEncoder
 fullRouteEncoder = mkFullRouteEncoder
   (FullRoute_Backend BackendRoute_Missing :/ ())
   (\case
-      BackendRoute_Missing -> PathSegment "missing" $ unitEncoder mempty
-      BackendRoute_Cliente -> PathSegment "cliente" $ unitEncoder mempty
-      BackendRoute_Produto -> PathSegment "produto" $ unitEncoder mempty
-      BackendRoute_Listar  -> PathSegment "listar" $ unitEncoder mempty
-      BackendRoute_Buscar  -> PathSegment "buscar" readShowEncoder
+      BackendRoute_Missing     -> PathSegment "missing" $ unitEncoder mempty
+      BackendRoute_Livro       -> PathSegment "livro" $ unitEncoder mempty
+      BackendRoute_Funcionario -> PathSegment "funcionario" $ unitEncoder mempty
+      BackendRoute_Comprador   -> PathSegment "comprador" $ unitEncoder mempty
+      BackendRoute_ListarLivr  -> PathSegment "lislivr" $ unitEncoder mempty
+      BackendRoute_ListarFunc  -> PathSegment "lisfunc" $ unitEncoder mempty
+      BackendRoute_ListarComp  -> PathSegment "liscomp" $ unitEncoder mempty
+      BackendRoute_BuscarLivr  -> PathSegment "buslivr" readShowEncoder
+      BackendRoute_BuscarFunc  -> PathSegment "busfunc" readShowEncoder
+      BackendRoute_BuscarComp  -> PathSegment "buscomp" readShowEncoder
+      BackendRoute_EditarLivr  -> PathSegment "edilivr" readShowEncoder
+      BackendRoute_EditarFunc  -> PathSegment "edifunc" readShowEncoder
+      BackendRoute_EditarComp  -> PathSegment "edicomp" readShowEncoder
+      BackendRoute_DeletarLivr -> PathSegment "dellivr" readShowEncoder
+      BackendRoute_DeletarFunc -> PathSegment "delfunc" readShowEncoder
+      BackendRoute_DeletarComp -> PathSegment "delcomp" readShowEncoder
       )
   (\case
       FrontendRoute_Main -> PathEnd $ unitEncoder mempty)
